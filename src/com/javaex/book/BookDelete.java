@@ -1,4 +1,4 @@
-package com.javaex.author;
+package com.javaex.book;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class AuthorUpdate {
+public class BookDelete {
 
 	public static void main(String[] args) {
 		
@@ -21,44 +21,35 @@ public class AuthorUpdate {
 			conn = DriverManager.getConnection(url, "book", "book");
 			
 			String query = "";
-			query += " update  author ";
-			query += " set author_name = ? ";
-			query += "    ,author_desc = ? ";
-			query += " where author_id = ? ";
+			query += " delete from book ";
+			query += " where book_id = ? ";
 			
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, "김영하");
-			pstmt.setString(2, "알쓸신잡");
-			pstmt.setInt(3, 6);
-			
+			pstmt.setInt(1, 11);
 			
 			int count = pstmt.executeUpdate();
 			
-			System.out.println(count + "건 수정되었습니다.");
-			
+			System.out.println(count + "건 삭제되었습니다.");
 			
 		} catch(ClassNotFoundException e) {
 			System.out.println("error: 드라이버 로딩 실패 - " + e);
-		} catch(SQLException e) {
-			System.out.println("error:" + e);
+		} catch (SQLException e) {
+			 System.out.println("error:" + e);
 		} finally {
-			try {
-				if(rs != null) {
-					rs.close();
-				}
-				if(pstmt != null) {
-					pstmt.close();
-				}
-				if(conn != null) {
-					conn.close();
-				}
-			} catch(SQLException e) {
-				System.out.println("error:" + e);
-			}
+			 try {
+				 if (rs != null) {
+					 rs.close();
+				 }
+				 if (pstmt != null) {
+					 pstmt.close();
+				 }
+				 if (conn != null) {
+					 conn.close();
+				 }
+			 } catch (SQLException e) {
+				 System.out.println("error:" + e);
+			 }
 		}
-		
-		
-		
 	}
 
 }

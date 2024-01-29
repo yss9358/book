@@ -51,7 +51,15 @@ public class AuthorSelect2 {
 			}
 			
 			// 결과처리
-			System.out.println(authorList.toString());
+			// 리스트를 이용해서 출력
+			
+			for(int i=0; i<authorList.size(); i++) {
+				int no = authorList.get(i).getAuthorId();
+				String name = authorList.get(i).getAuthorName();
+				String desc = authorList.get(i).getAuthorDesc();
+				
+				System.out.println(no + ".\t" + name + "\t" + desc);
+			}
 			
 		}catch(ClassNotFoundException e) {
 			System.out.println("error: 드라이버 로딩 실패 - " + e);
